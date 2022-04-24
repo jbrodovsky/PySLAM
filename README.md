@@ -1,4 +1,4 @@
 # PySLAM
-A python based SLAM implementation for a cartesian plane.
+A collection of Python-based simultaneous localization and mapping techniques.
 
 Reference this [article](https://fjp.at/posts/slam/fastslam/).

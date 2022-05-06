@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>localization.KalmanFilter &#8212; PySLAM 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="localization.Particle" href="localization.Particle.html" />
+    <link rel="prev" title="localization.ExtendedKalmanFilter" href="localization.ExtendedKalmanFilter.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="localization-kalmanfilter">
+<h1>localization.KalmanFilter<a class="headerlink" href="#localization-kalmanfilter" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="localization.KalmanFilter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">localization.</span></span><span class="sig-name descname"><span class="pre">KalmanFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.KalmanFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A basic Kalman Filter implemented using NumPy. This class is used to ensure
+that the matricies are properly constructed with appropriately sized 
+dimensions and cycle through the Kalman Filter. Currently also exploring
+if it can be used as a base class for the Kalman Filter derivatives (EKF and
+UKF) however those also require customization that is unique to their
+implementation.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="localization.KalmanFilter.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.KalmanFilter.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct the Kalman filter by providing dimensions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_dim</strong> (<em>INT</em>) – Length of the state vector. The default is 1. Used to create</p></li>
+<li><p><strong>u_dim</strong> (<em>INT</em>) – Length of the control input vector. The default is 0.</p></li>
+<li><p><strong>z_dim</strong> (<em>INT</em>) – Length of the measurement or observation vector. The default is 1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The Kalman Filter object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#localization.KalmanFilter.__init__" title="localization.KalmanFilter.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([x_dim, u_dim, z_dim])</p></td>
+<td><p>Construct the Kalman filter by providing dimensions.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#localization.KalmanFilter.predict" title="localization.KalmanFilter.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code></a>(u)</p></td>
+<td><p>Predict (propagate) the Kalman Filter's state estimate.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#localization.KalmanFilter.step" title="localization.KalmanFilter.step"><code class="xref py py-obj docutils literal notranslate"><span class="pre">step</span></code></a>([u, z])</p></td>
+<td><p>Executes one cycle of the Kalman Filter</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#localization.KalmanFilter.update" title="localization.KalmanFilter.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(z)</p></td>
+<td><p>The measurement update function.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="localization.KalmanFilter.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.KalmanFilter.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predict (propagate) the Kalman Filter’s state estimate. This method
+should not be called directly. Call <cite>step</cite> instead.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>u</strong> (<em>array</em><em> or </em><em>array-like</em>) – the control input vector</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="localization.KalmanFilter.step">
+<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.KalmanFilter.step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executes one cycle of the Kalman Filter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<em>array</em><em> or </em><em>array-like</em>) – the control input vector</p></li>
+<li><p><strong>z</strong> (<em>array</em><em> or </em><em>array-like</em>) – the measurement or observation vector</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="localization.KalmanFilter.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.KalmanFilter.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>The measurement update function. This method should not be called 
+directly. Call <cite>step</cite> instead.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>z</strong> (<em>array</em><em> or </em><em>array-like</em>) – the measurement or observation vector</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">PySLAM</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="localization.html">localization</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="localization.EKFTwoD.html">localization.EKFTwoD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="localization.ExtendedKalmanFilter.html">localization.ExtendedKalmanFilter</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">localization.KalmanFilter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="localization.Particle.html">localization.Particle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="localization.ParticleFilter.html">localization.ParticleFilter</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mapping.html">mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="slam.html">slam</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="localization.html">localization</a><ul>
+      <li>Previous: <a href="localization.ExtendedKalmanFilter.html" title="previous chapter">localization.ExtendedKalmanFilter</a></li>
+      <li>Next: <a href="localization.Particle.html" title="next chapter">localization.Particle</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, James Brodovsky.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/generated/localization.KalmanFilter.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

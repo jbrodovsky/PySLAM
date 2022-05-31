@@ -1,0 +1,6 @@
+localization.test.add\_two
+==========================
+
+.. currentmodule:: localization.test
+
+.. autofunction:: add_two

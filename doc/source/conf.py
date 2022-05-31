@@ -17,7 +17,8 @@
 import pathlib, sys, os
 
 sys.path.insert(0, pathlib.Path(__file__).parents[2].resolve().as_posix())
-sys.path.insert(0, os.path.abspath('../../pyslam/'))
+sys.path.insert(0, os.path.abspath('..//..//pyslam//'))
+sys.path.insert(0, os.path.abspath('..//..//pyslam//localization//'))
 
 # -- Project information -----------------------------------------------------
 

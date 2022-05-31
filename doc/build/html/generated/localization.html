@@ -15,7 +15,7 @@
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="localization.EKFTwoD" href="localization.EKFTwoD.html" />
+    <link rel="next" title="localization.examples" href="localization.examples.html" />
     <link rel="prev" title="Welcome to PySLAM’s documentation!" href="../index.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -44,27 +44,21 @@
 </ul>
 </dd>
 </dl>
-<p class="rubric">Classes</p>
+<p class="rubric">Modules</p>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="localization.EKFTwoD.html#localization.EKFTwoD" title="localization.EKFTwoD"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EKFTwoD</span></code></a>([x_dim, u_dim, z_dim])</p></td>
-<td><p>Simple Cartesian plane EKF: x and y position, body frame velocity, heading, angular velocity.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="localization.examples.html#module-localization.examples" title="localization.examples"><code class="xref py py-obj docutils literal notranslate"><span class="pre">localization.examples</span></code></a></p></td>
+<td><p>Examples for how to implement and use the localization tools.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="localization.ExtendedKalmanFilter.html#localization.ExtendedKalmanFilter" title="localization.ExtendedKalmanFilter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExtendedKalmanFilter</span></code></a>([x_dim, u_dim, z_dim])</p></td>
-<td><p>Base level class.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="localization.gaussian.html#module-localization.gaussian" title="localization.gaussian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">localization.gaussian</span></code></a></p></td>
+<td><p>Gaussian module contains bases for Gaussian implementations of Bayes Filter.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="localization.KalmanFilter.html#localization.KalmanFilter" title="localization.KalmanFilter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KalmanFilter</span></code></a>([x_dim, u_dim, z_dim])</p></td>
-<td><p>A basic Kalman Filter implemented using NumPy.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="localization.Particle.html#localization.Particle" title="localization.Particle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Particle</span></code></a>([state, weight, Map])</p></td>
-<td><p>A basic particle object for use in a particle filter.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="localization.ParticleFilter.html#localization.ParticleFilter" title="localization.ParticleFilter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParticleFilter</span></code></a>([n_particles, ...])</p></td>
-<td><p>This is a base class particle filter that contains many of the re-usable  elements common across implementaitons of particle fitlers.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="localization.nonparameteric.html#module-localization.nonparameteric" title="localization.nonparameteric"><code class="xref py py-obj docutils literal notranslate"><span class="pre">localization.nonparameteric</span></code></a></p></td>
+<td><p>Module for nonparameteric implementations of Bayesian Filters.</p></td>
 </tr>
 </tbody>
 </table>
@@ -89,11 +83,9 @@
 <h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">localization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="localization.EKFTwoD.html">localization.EKFTwoD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="localization.ExtendedKalmanFilter.html">localization.ExtendedKalmanFilter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="localization.KalmanFilter.html">localization.KalmanFilter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="localization.Particle.html">localization.Particle</a></li>
-<li class="toctree-l2"><a class="reference internal" href="localization.ParticleFilter.html">localization.ParticleFilter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="localization.examples.html">localization.examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="localization.gaussian.html">localization.gaussian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="localization.nonparameteric.html">localization.nonparameteric</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mapping.html">mapping</a></li>
@@ -105,7 +97,7 @@
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
       <li>Previous: <a href="../index.html" title="previous chapter">Welcome to PySLAM’s documentation!</a></li>
-      <li>Next: <a href="localization.EKFTwoD.html" title="next chapter">localization.EKFTwoD</a></li>
+      <li>Next: <a href="localization.examples.html" title="next chapter">localization.examples</a></li>
   </ul></li>
 </ul>
 </div>
@@ -135,7 +127,7 @@
       &copy;2022, James Brodovsky.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.2.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

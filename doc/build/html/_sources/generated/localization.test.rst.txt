@@ -1,0 +1,30 @@
+localization.test
+=================
+
+.. automodule:: localization.test
+  
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:                                          
+   
+      add_two
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

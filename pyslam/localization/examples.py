@@ -1,11 +1,11 @@
 """
-Examples for how to implement and use the localization tools.
+Examples for how to implement and use the localization tools. In this module various implementations of a 
 """
 import numpy as np
-from gaussian import ExtendedKalmanFilter
+from gaussian import ExtendedKalmanFilter, UnscentedKalmanFilter
 from nonparameteric import ParticleFilter
 
-class EKFTwoD(ExtendedKalmanFilter):
+class EKF(ExtendedKalmanFilter):
     '''
     Simple Cartesian plane EKF: x and y position, body frame velocity, heading,
     angular velocity. Measures distance and bearing to a fixed landmark. Here 
@@ -35,10 +35,11 @@ class EKFTwoD(ExtendedKalmanFilter):
              [-np.sin(z[1]) / r, np.cos(z[1]) / r, 0, 0, 0]]
         self.H = np.array(H)'''
 
+class UKF(UnscentedKalmanFilter):
+    pass
 
 class TwoDPF(ParticleFilter):
-    
-   
+    pass
 
 if __name__ == '__main__':
     print('Hello world!')

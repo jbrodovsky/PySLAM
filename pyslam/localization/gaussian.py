@@ -49,6 +49,11 @@ class KalmanFilter:
         
         self.H = np.zeros((z_dim, x_dim))
         self.R = np.zeros(z_dim)
+
+        self.F_initialized = False
+        self.B_initialized = False
+        self.P_initialized = False
+        self.H_initialized = False
         print("Kalman Filter constructed. Please manaully initialize matrix values.")
         
 
@@ -76,6 +81,8 @@ class KalmanFilter:
         :type z: array or array-like
         """
         
+        assert self.F_initialized and self.P_initialized and self.H_initialized, "Please initialize matrix values before exectuing"
+
         if u is None:
             u = np.zeros((1,))
             #(f"U : {u}")
@@ -116,6 +123,42 @@ class KalmanFilter:
         self.x += K @ y_bar
         self.P = (np.eye(self.x_dim) - K @ self.H) @ self.P
         self.y = z - self.H @ self.x
+
+    def set_state_transition_matrix(self, F):
+        F = np.array(F)
+        assert F.shape == self.F.shape, "Please check dimensions of F matrix"
+        self.F = F
+        self.F_initialized = True
+    def set_control_input_matrix(self, B):
+        B = np.array(B)
+        assert B.shape == self.B.shape, "Please check dimensions of B matrix"
+        self.B = B
+        self.B_initialized = True
+    def set_process_noise_matrix(self, Q):
+        Q = np.array(Q)
+        if Q.shape == (1, ) or Q.shape == (self.B.shape[1], ):
+            # Constant or diagonal of the matrix
+            Q *= np.eye(self.B.shape[1])
+        assert Q.shape == (self.u_dim, self.u_dim), "Check dimensions of Q input. It must be a constant or of length equal to u_dim"
+        if self.B_initialized:
+            self.Q = self.B @ Q @ self.B.T
+        elif self.F_initialized:
+            self.Q = self.F @ Q @ self.F.T
+        else:
+            Exception("Cannot automatically set process noise without first setting the state transition matrix or control input matrix.")
+    def initialize(self, mu, covariance):
+        mu = np.array(mu)
+        assert mu.shape == self.x.shape, "Please check dimensions of mu"
+        covariance = np.array(covariance)
+        if covariance.shape == self.P.shape:
+            self.P = covariance
+            self.P_initialized = True
+        elif covariance.shape == (1,) or covariance.shape == (self.x_dim, ):
+            self.P *= covariance
+            self.P_initialized = True
+        else:
+            Exception("Please check dimensions of covariance input.")
+    
 
 class ExtendedKalmanFilter(KalmanFilter):
     # Use inherited constructor

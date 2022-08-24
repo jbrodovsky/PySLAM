@@ -1,2 +1,3 @@
 .spyproject/
 *.pyc
+*.ipynb_checkpoints

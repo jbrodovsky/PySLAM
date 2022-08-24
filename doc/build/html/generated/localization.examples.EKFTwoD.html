@@ -15,8 +15,6 @@
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="localization.gaussian" href="localization.gaussian.html" />
-    <link rel="prev" title="localization.examples" href="localization.examples.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -35,104 +33,6 @@
             
   <section id="localization-examples-ekftwod">
 <h1>localization.examples.EKFTwoD<a class="headerlink" href="#localization-examples-ekftwod" title="Permalink to this headline">¶</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="localization.examples.EKFTwoD">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">localization.examples.</span></span><span class="sig-name descname"><span class="pre">EKFTwoD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.examples.EKFTwoD" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">gaussian.ExtendedKalmanFilter</span></code></p>
-<p>Simple Cartesian plane EKF: x and y position, body frame velocity, heading,
-angular velocity. Measures distance and bearing to a fixed landmark. Here 
-as an example</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="localization.examples.EKFTwoD.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.examples.EKFTwoD.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Construct the Kalman filter by providing dimensions.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>x_dim</strong> (<em>INT</em>) – Length of the state vector. The default is 1. Used to create</p></li>
-<li><p><strong>u_dim</strong> (<em>INT</em>) – Length of the control input vector. The default is 0.</p></li>
-<li><p><strong>z_dim</strong> (<em>INT</em>) – Length of the measurement or observation vector. The default is 1.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The Kalman Filter object</p>
-</dd>
-</dl>
-</dd></dl>
-
-<p class="rubric">Methods</p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#localization.examples.EKFTwoD.__init__" title="localization.examples.EKFTwoD.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([x_dim, u_dim, z_dim])</p></td>
-<td><p>Construct the Kalman filter by providing dimensions.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">calculate_F</span></code>(u)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">calculate_H</span></code>(z)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">f</span></code>(u)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">h</span></code>(x)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#localization.examples.EKFTwoD.predict" title="localization.examples.EKFTwoD.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code></a>(u)</p></td>
-<td><p>Predict (propagate) the Kalman Filter's state estimate.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#localization.examples.EKFTwoD.step" title="localization.examples.EKFTwoD.step"><code class="xref py py-obj docutils literal notranslate"><span class="pre">step</span></code></a>([u, z])</p></td>
-<td><p>Executes one cycle of the Kalman Filter</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#localization.examples.EKFTwoD.update" title="localization.examples.EKFTwoD.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(z)</p></td>
-<td><p>The measurement update function.</p></td>
-</tr>
-</tbody>
-</table>
-<dl class="py method">
-<dt class="sig sig-object py" id="localization.examples.EKFTwoD.predict">
-<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.examples.EKFTwoD.predict" title="Permalink to this definition">¶</a></dt>
-<dd><p>Predict (propagate) the Kalman Filter’s state estimate. This method
-should not be called directly. Call <cite>step</cite> instead.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>u</strong> (<em>array</em><em> or </em><em>array-like</em>) – the control input vector</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="localization.examples.EKFTwoD.step">
-<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.examples.EKFTwoD.step" title="Permalink to this definition">¶</a></dt>
-<dd><p>Executes one cycle of the Kalman Filter</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>u</strong> (<em>array</em><em> or </em><em>array-like</em>) – the control input vector</p></li>
-<li><p><strong>z</strong> (<em>array</em><em> or </em><em>array-like</em>) – the measurement or observation vector</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="localization.examples.EKFTwoD.update">
-<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.examples.EKFTwoD.update" title="Permalink to this definition">¶</a></dt>
-<dd><p>The measurement update function. This method should not be called 
-directly. Call <cite>step</cite> instead.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>z</strong> (<em>array</em><em> or </em><em>array-like</em>) – the measurement or observation vector</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </section>
 
 
@@ -152,16 +52,8 @@ directly. Call <cite>step</cite> instead.</p>
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="localization.html">localization</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="localization.examples.html">localization.examples</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">localization.examples.EKFTwoD</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="localization.gaussian.html">localization.gaussian</a></li>
-<li class="toctree-l2"><a class="reference internal" href="localization.nonparameteric.html">localization.nonparameteric</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="localization.html">localization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mapping.html">mapping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="slam.html">slam</a></li>
 </ul>
@@ -170,12 +62,6 @@ directly. Call <cite>step</cite> instead.</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-  <li><a href="localization.html">localization</a><ul>
-  <li><a href="localization.examples.html">localization.examples</a><ul>
-      <li>Previous: <a href="localization.examples.html" title="previous chapter">localization.examples</a></li>
-      <li>Next: <a href="localization.gaussian.html" title="next chapter">localization.gaussian</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -205,7 +91,7 @@ directly. Call <cite>step</cite> instead.</p>
       &copy;2022, James Brodovsky.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.2.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

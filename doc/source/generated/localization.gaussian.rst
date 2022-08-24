@@ -1,4 +1,4 @@
-localization.gaussian
+﻿localization.gaussian
 =====================
 
 .. automodule:: localization.gaussian
@@ -20,7 +20,9 @@ localization.gaussian
       :template: custom-class-template.rst               
    
       ExtendedKalmanFilter
+      InformationFilter
       KalmanFilter
+      UnscentedKalmanFilter
    
    
 

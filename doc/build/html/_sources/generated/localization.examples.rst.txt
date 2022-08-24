@@ -1,4 +1,4 @@
-localization.examples
+﻿localization.examples
 =====================
 
 .. automodule:: localization.examples
@@ -19,7 +19,9 @@ localization.examples
       :toctree:                                          
       :template: custom-class-template.rst               
    
-      EKFTwoD
+      EKF
+      TwoDPF
+      UKF
    
    
 

@@ -1,4 +1,4 @@
-localization.nonparameteric
+﻿localization.nonparameteric
 ===========================
 
 .. automodule:: localization.nonparameteric
@@ -19,6 +19,7 @@ localization.nonparameteric
       :toctree:                                          
       :template: custom-class-template.rst               
    
+      HistogramFilter
       Particle
       ParticleFilter
    

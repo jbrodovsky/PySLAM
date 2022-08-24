@@ -15,8 +15,8 @@
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="localization.nonparameteric.Particle" href="localization.nonparameteric.Particle.html" />
-    <link rel="prev" title="localization.gaussian.KalmanFilter" href="localization.gaussian.KalmanFilter.html" />
+    <link rel="next" title="localization.nonparameteric.HistogramFilter" href="localization.nonparameteric.HistogramFilter.html" />
+    <link rel="prev" title="localization.gaussian.UnscentedKalmanFilter" href="localization.gaussian.UnscentedKalmanFilter.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -44,10 +44,13 @@ particle filter base and histogram filter are contained in this module.</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="localization.nonparameteric.Particle.html#localization.nonparameteric.Particle" title="localization.nonparameteric.Particle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Particle</span></code></a>([state, weight, Map])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="localization.nonparameteric.HistogramFilter.html#localization.nonparameteric.HistogramFilter" title="localization.nonparameteric.HistogramFilter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HistogramFilter</span></code></a>()</p></td>
+<td><p>To be implemented in the future</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="localization.nonparameteric.Particle.html#localization.nonparameteric.Particle" title="localization.nonparameteric.Particle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Particle</span></code></a>([state, weight, Map])</p></td>
 <td><p>A basic particle object for use in a particle filter.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="localization.nonparameteric.ParticleFilter.html#localization.nonparameteric.ParticleFilter" title="localization.nonparameteric.ParticleFilter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParticleFilter</span></code></a>([n_particles, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="localization.nonparameteric.ParticleFilter.html#localization.nonparameteric.ParticleFilter" title="localization.nonparameteric.ParticleFilter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParticleFilter</span></code></a>([n_particles, ...])</p></td>
 <td><p>This is a base class particle filter that contains many of the re-usable  elements common across implementaitons of particle fitlers.</p></td>
 </tr>
 </tbody>
@@ -76,6 +79,7 @@ particle filter base and histogram filter are contained in this module.</p>
 <li class="toctree-l2"><a class="reference internal" href="localization.examples.html">localization.examples</a></li>
 <li class="toctree-l2"><a class="reference internal" href="localization.gaussian.html">localization.gaussian</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">localization.nonparameteric</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="localization.nonparameteric.HistogramFilter.html">localization.nonparameteric.HistogramFilter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="localization.nonparameteric.Particle.html">localization.nonparameteric.Particle</a></li>
 <li class="toctree-l3"><a class="reference internal" href="localization.nonparameteric.ParticleFilter.html">localization.nonparameteric.ParticleFilter</a></li>
 </ul>
@@ -91,8 +95,8 @@ particle filter base and histogram filter are contained in this module.</p>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="localization.html">localization</a><ul>
-      <li>Previous: <a href="localization.gaussian.KalmanFilter.html" title="previous chapter">localization.gaussian.KalmanFilter</a></li>
-      <li>Next: <a href="localization.nonparameteric.Particle.html" title="next chapter">localization.nonparameteric.Particle</a></li>
+      <li>Previous: <a href="localization.gaussian.UnscentedKalmanFilter.html" title="previous chapter">localization.gaussian.UnscentedKalmanFilter</a></li>
+      <li>Next: <a href="localization.nonparameteric.HistogramFilter.html" title="next chapter">localization.nonparameteric.HistogramFilter</a></li>
   </ul></li>
   </ul></li>
 </ul>
@@ -123,7 +127,7 @@ particle filter base and histogram filter are contained in this module.</p>
       &copy;2022, James Brodovsky.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.2.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

@@ -37,10 +37,16 @@
 <h1>localization.nonparameteric.ParticleFilter<a class="headerlink" href="#localization-nonparameteric-particlefilter" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="localization.nonparameteric.ParticleFilter">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">localization.nonparameteric.</span></span><span class="sig-name descname"><span class="pre">ParticleFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_particles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resampling_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Random'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_estimation_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'WeightedAverage'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resampling_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.nonparameteric.ParticleFilter" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">localization.nonparameteric.</span></span><span class="sig-name descname"><span class="pre">ParticleFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_particles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resampling_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Random'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_estimation_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'WeightedAverage'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resampling_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.nonparameteric.ParticleFilter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>This is a base class particle filter that contains many of the re-usable 
-elements common across implementaitons of particle fitlers.</p>
+elements common across implementaitons of particle fitlers. It is designed
+to function as a pseudo-abstract class. Two methods propagate() and
+update_weights() will always be implementation-sepcific, as well as the 
+given state space, control input, and measurements. Thus this class is to 
+be used as an abstract base that takes care of the backend for your specific
+implementation. For your implementation, inherit from this class, then override
+the two abstract methods.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="localization.nonparameteric.ParticleFilter.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_particles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resampling_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Random'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_estimation_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'WeightedAverage'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resampling_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.nonparameteric.ParticleFilter.__init__" title="Permalink to this definition">¶</a></dt>
@@ -57,48 +63,151 @@ elements common across implementaitons of particle fitlers.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#localization.nonparameteric.ParticleFilter.__init__" title="localization.nonparameteric.ParticleFilter.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([n_particles, resampling_type, ...])</p></td>
 <td><p>Constructor.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_states</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#localization.nonparameteric.ParticleFilter.estimate_states" title="localization.nonparameteric.ParticleFilter.estimate_states"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_states</span></code></a>()</p></td>
+<td><p>Method used to determine the navigation fix or solution of the particle filter based on the estimation method specified.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_highest_weighted_particle</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#localization.nonparameteric.ParticleFilter.get_highest_weighted_particle" title="localization.nonparameteric.ParticleFilter.get_highest_weighted_particle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_highest_weighted_particle</span></code></a>()</p></td>
+<td><p>Returns highest weighted particle.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_sum_weight_squared</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#localization.nonparameteric.ParticleFilter.get_sum_weight" title="localization.nonparameteric.ParticleFilter.get_sum_weight"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_sum_weight</span></code></a>()</p></td>
+<td><p>Returns the sum of the weights of the particle field.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_total_weight</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#localization.nonparameteric.ParticleFilter.get_sum_weight_squared" title="localization.nonparameteric.ParticleFilter.get_sum_weight_squared"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_sum_weight_squared</span></code></a>()</p></td>
+<td><p>Returns the sum of the squares of the particles' weights.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#localization.nonparameteric.ParticleFilter.initialize" title="localization.nonparameteric.ParticleFilter.initialize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">initialize</span></code></a>([method, resampling_noise])</p></td>
-<td><p>Used to initialize the particle field</p></td>
+<td><p>Used to initialize the particle field.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">propagate</span></code>(particle[, Input])</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#localization.nonparameteric.ParticleFilter.multinomial_resample" title="localization.nonparameteric.ParticleFilter.multinomial_resample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">multinomial_resample</span></code></a>()</p></td>
+<td><p>Resample particles using multinomial method</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">step</span></code>([Input, Observations])</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#localization.nonparameteric.ParticleFilter.normalize_weights" title="localization.nonparameteric.ParticleFilter.normalize_weights"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normalize_weights</span></code></a>()</p></td>
+<td><p>Normailzes the weights of all particles to [0.0, 1.0)</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code>(observations)</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#localization.nonparameteric.ParticleFilter.propagate" title="localization.nonparameteric.ParticleFilter.propagate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">propagate</span></code></a>(particle[, Input])</p></td>
+<td><p>Private abstract method used to propagate the particle field.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_weight</span></code>(particle, observations)</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#localization.nonparameteric.ParticleFilter.random_resample" title="localization.nonparameteric.ParticleFilter.random_resample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_resample</span></code></a>()</p></td>
+<td><p>Resample particles randomly with replacement using NumPy</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#localization.nonparameteric.ParticleFilter.resample" title="localization.nonparameteric.ParticleFilter.resample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resample</span></code></a>()</p></td>
+<td><p>This method calls the specified resampling method of the particle filter.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#localization.nonparameteric.ParticleFilter.residual_resample" title="localization.nonparameteric.ParticleFilter.residual_resample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">residual_resample</span></code></a>()</p></td>
+<td><p>Resample particles using residual method</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#localization.nonparameteric.ParticleFilter.step" title="localization.nonparameteric.ParticleFilter.step"><code class="xref py py-obj docutils literal notranslate"><span class="pre">step</span></code></a>([Input, Observations])</p></td>
+<td><p>Used to run a single cycle of the particle filter algorithm</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#localization.nonparameteric.ParticleFilter.update" title="localization.nonparameteric.ParticleFilter.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(observations)</p></td>
+<td><p>Private method used to update the weights of the particles based on  measurements recieved.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#localization.nonparameteric.ParticleFilter.update_weight" title="localization.nonparameteric.ParticleFilter.update_weight"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_weight</span></code></a>(particle, observations)</p></td>
+<td><p>Private abstract method for the measurement or observation model.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py method">
+<dt class="sig sig-object py" id="localization.nonparameteric.ParticleFilter.estimate_states">
+<span class="sig-name descname"><span class="pre">estimate_states</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#localization.nonparameteric.ParticleFilter.estimate_states" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method used to determine the navigation fix or solution of the particle
+filter based on the estimation method specified.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="localization.nonparameteric.ParticleFilter.get_highest_weighted_particle">
+<span class="sig-name descname"><span class="pre">get_highest_weighted_particle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#localization.nonparameteric.ParticleFilter.get_highest_weighted_particle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns highest weighted particle.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="localization.nonparameteric.ParticleFilter.get_sum_weight">
+<span class="sig-name descname"><span class="pre">get_sum_weight</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#localization.nonparameteric.ParticleFilter.get_sum_weight" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the sum of the weights of the particle field. When normalized 
+this should be equal to 1.0</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="localization.nonparameteric.ParticleFilter.get_sum_weight_squared">
+<span class="sig-name descname"><span class="pre">get_sum_weight_squared</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#localization.nonparameteric.ParticleFilter.get_sum_weight_squared" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the sum of the squares of the particles’ weights.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="localization.nonparameteric.ParticleFilter.initialize">
-<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'about'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resampling_noise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.nonparameteric.ParticleFilter.initialize" title="Permalink to this definition">¶</a></dt>
-<dd><p>Used to initialize the particle field</p>
-<dl class="simple">
-<dt>method<span class="classifier">TYPE, optional</span></dt><dd><p>DESCRIPTION. The default is ‘about’.</p>
-</dd>
-<dt>resampling_noise<span class="classifier">TYPE, optional</span></dt><dd><p>DESCRIPTION. The default is None.</p>
-</dd>
-<dt><a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs<span class="classifier">TYPE</span></dt><dd><p>DESCRIPTION.</p>
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'about'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resampling_noise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.nonparameteric.ParticleFilter.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to initialize the particle field.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>method</strong> (<em>string</em>) – initializaiton method description; currently available are: “about”, “fixed”, and “uniform”.</p></li>
+<li><p><strong>resampling_noise</strong> (<em>float</em><em> or </em><em>array of floats</em>) – noise or “jitter” added to the particle state on resampling.</p></li>
+</ul>
 </dd>
 </dl>
-<p>None.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="localization.nonparameteric.ParticleFilter.multinomial_resample">
+<span class="sig-name descname"><span class="pre">multinomial_resample</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#localization.nonparameteric.ParticleFilter.multinomial_resample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resample particles using multinomial method</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="localization.nonparameteric.ParticleFilter.normalize_weights">
+<span class="sig-name descname"><span class="pre">normalize_weights</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#localization.nonparameteric.ParticleFilter.normalize_weights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normailzes the weights of all particles to [0.0, 1.0)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="localization.nonparameteric.ParticleFilter.propagate">
+<span class="sig-name descname"><span class="pre">propagate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">particle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.nonparameteric.ParticleFilter.propagate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Private abstract method used to propagate the particle field. Should be overridden in specific sub-class implementation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="localization.nonparameteric.ParticleFilter.random_resample">
+<span class="sig-name descname"><span class="pre">random_resample</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#localization.nonparameteric.ParticleFilter.random_resample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resample particles randomly with replacement using NumPy</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="localization.nonparameteric.ParticleFilter.resample">
+<span class="sig-name descname"><span class="pre">resample</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#localization.nonparameteric.ParticleFilter.resample" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method calls the specified resampling method of the particle filter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="localization.nonparameteric.ParticleFilter.residual_resample">
+<span class="sig-name descname"><span class="pre">residual_resample</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#localization.nonparameteric.ParticleFilter.residual_resample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resample particles using residual method</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="localization.nonparameteric.ParticleFilter.step">
+<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Observations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.nonparameteric.ParticleFilter.step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to run a single cycle of the particle filter algorithm</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Input</strong> (<em>array-like</em><em>, </em><em>converted to numpy array in method</em>) – control input vector</p></li>
+<li><p><strong>Observation</strong> (<em>array-like</em><em>, </em><em>converted to numpy array in method</em>) – observation or measurment vector</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="localization.nonparameteric.ParticleFilter.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">observations</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.nonparameteric.ParticleFilter.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Private method used to update the weights of the particles based on 
+measurements recieved.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="localization.nonparameteric.ParticleFilter.update_weight">
+<span class="sig-name descname"><span class="pre">update_weight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">particle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observations</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.nonparameteric.ParticleFilter.update_weight" title="Permalink to this definition">¶</a></dt>
+<dd><p>Private abstract method for the measurement or observation model.</p>
 </dd></dl>
 
 </dd></dl>
@@ -127,6 +236,7 @@ elements common across implementaitons of particle fitlers.</p>
 <li class="toctree-l2"><a class="reference internal" href="localization.examples.html">localization.examples</a></li>
 <li class="toctree-l2"><a class="reference internal" href="localization.gaussian.html">localization.gaussian</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="localization.nonparameteric.html">localization.nonparameteric</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="localization.nonparameteric.HistogramFilter.html">localization.nonparameteric.HistogramFilter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="localization.nonparameteric.Particle.html">localization.nonparameteric.Particle</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">localization.nonparameteric.ParticleFilter</a></li>
 </ul>
@@ -176,7 +286,7 @@ elements common across implementaitons of particle fitlers.</p>
       &copy;2022, James Brodovsky.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.2.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

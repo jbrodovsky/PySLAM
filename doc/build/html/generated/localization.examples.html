@@ -15,7 +15,7 @@
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="localization.examples.EKFTwoD" href="localization.examples.EKFTwoD.html" />
+    <link rel="next" title="localization.examples.EKF" href="localization.examples.EKF.html" />
     <link rel="prev" title="localization" href="localization.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -35,7 +35,7 @@
             
   <section id="module-localization.examples">
 <span id="localization-examples"></span><h1>localization.examples<a class="headerlink" href="#module-localization.examples" title="Permalink to this headline">¶</a></h1>
-<p>Examples for how to implement and use the localization tools.</p>
+<p>Examples for how to implement and use the localization tools. In this module various implementations of a</p>
 <p class="rubric">Classes</p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -43,8 +43,14 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="localization.examples.EKFTwoD.html#localization.examples.EKFTwoD" title="localization.examples.EKFTwoD"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EKFTwoD</span></code></a>([x_dim, u_dim, z_dim])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="localization.examples.EKF.html#localization.examples.EKF" title="localization.examples.EKF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EKF</span></code></a>([x_dim, u_dim, z_dim])</p></td>
 <td><p>Simple Cartesian plane EKF: x and y position, body frame velocity, heading, angular velocity.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="localization.examples.TwoDPF.html#localization.examples.TwoDPF" title="localization.examples.TwoDPF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TwoDPF</span></code></a>([n_particles, resampling_type, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="localization.examples.UKF.html#localization.examples.UKF" title="localization.examples.UKF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UKF</span></code></a>([x_dim, u_dim, z_dim, alpha, beta, kappa])</p></td>
+<td><p></p></td>
 </tr>
 </tbody>
 </table>
@@ -70,7 +76,9 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="localization.html">localization</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">localization.examples</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="localization.examples.EKFTwoD.html">localization.examples.EKFTwoD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="localization.examples.EKF.html">localization.examples.EKF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="localization.examples.TwoDPF.html">localization.examples.TwoDPF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="localization.examples.UKF.html">localization.examples.UKF</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="localization.gaussian.html">localization.gaussian</a></li>
@@ -87,7 +95,7 @@
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="localization.html">localization</a><ul>
       <li>Previous: <a href="localization.html" title="previous chapter">localization</a></li>
-      <li>Next: <a href="localization.examples.EKFTwoD.html" title="next chapter">localization.examples.EKFTwoD</a></li>
+      <li>Next: <a href="localization.examples.EKF.html" title="next chapter">localization.examples.EKF</a></li>
   </ul></li>
   </ul></li>
 </ul>
@@ -118,7 +126,7 @@
       &copy;2022, James Brodovsky.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.2.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

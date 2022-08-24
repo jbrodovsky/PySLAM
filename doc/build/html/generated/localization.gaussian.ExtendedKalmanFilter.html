@@ -15,7 +15,7 @@
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="localization.gaussian.KalmanFilter" href="localization.gaussian.KalmanFilter.html" />
+    <link rel="next" title="localization.gaussian.InformationFilter" href="localization.gaussian.InformationFilter.html" />
     <link rel="prev" title="localization.gaussian" href="localization.gaussian.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -37,11 +37,12 @@
 <h1>localization.gaussian.ExtendedKalmanFilter<a class="headerlink" href="#localization-gaussian-extendedkalmanfilter" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="localization.gaussian.ExtendedKalmanFilter">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">localization.gaussian.</span></span><span class="sig-name descname"><span class="pre">ExtendedKalmanFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.gaussian.ExtendedKalmanFilter" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">localization.gaussian.</span></span><span class="sig-name descname"><span class="pre">ExtendedKalmanFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.gaussian.ExtendedKalmanFilter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="localization.gaussian.KalmanFilter.html#localization.gaussian.KalmanFilter" title="localization.gaussian.KalmanFilter"><code class="xref py py-class docutils literal notranslate"><span class="pre">localization.gaussian.KalmanFilter</span></code></a></p>
-<p>Base level class. Due to non-linear models, specific implementations must
+<p>Base level class for an Extended Kalman Filte inherited from the base level
+Kalman Filter. Due to non-linear models, specific implementations must
 be built with unique models. Use this as a base EKF class and extend it by
-inheriting an over riding the f(), h(), and calculate_F(), and 
+inheriting and over riding the f(), h(), and calculate_F(), and 
 calculate_H() functions.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="localization.gaussian.ExtendedKalmanFilter.__init__">
@@ -71,37 +72,133 @@ calculate_H() functions.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#localization.gaussian.ExtendedKalmanFilter.__init__" title="localization.gaussian.ExtendedKalmanFilter.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([x_dim, u_dim, z_dim])</p></td>
 <td><p>Construct the Kalman filter by providing dimensions.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">calculate_F</span></code>(u)</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#localization.gaussian.ExtendedKalmanFilter.calculate_F" title="localization.gaussian.ExtendedKalmanFilter.calculate_F"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calculate_F</span></code></a>(u)</p></td>
+<td><p>Calculates the state transition Jacobian</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">calculate_H</span></code>(z)</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#localization.gaussian.ExtendedKalmanFilter.calculate_H" title="localization.gaussian.ExtendedKalmanFilter.calculate_H"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calculate_H</span></code></a>(z)</p></td>
+<td><p>Calculates the observation Jacobian</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">f</span></code>(u)</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#localization.gaussian.ExtendedKalmanFilter.f" title="localization.gaussian.ExtendedKalmanFilter.f"><code class="xref py py-obj docutils literal notranslate"><span class="pre">f</span></code></a>(u)</p></td>
+<td><p>Propagation or state transition function</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">h</span></code>(z)</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#localization.gaussian.ExtendedKalmanFilter.h" title="localization.gaussian.ExtendedKalmanFilter.h"><code class="xref py py-obj docutils literal notranslate"><span class="pre">h</span></code></a>(z)</p></td>
+<td><p>Measurement transformation function that maps the current state estimate to the measurement space</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#localization.gaussian.ExtendedKalmanFilter.predict" title="localization.gaussian.ExtendedKalmanFilter.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code></a>(u)</p></td>
-<td><p>Predict (propagate) the Kalman Filter's state estimate.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#localization.gaussian.ExtendedKalmanFilter.initialize" title="localization.gaussian.ExtendedKalmanFilter.initialize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">initialize</span></code></a>(mu, covariance)</p></td>
+<td><p>Initializes the Kalman Filter about a mean and covariance</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#localization.gaussian.ExtendedKalmanFilter.step" title="localization.gaussian.ExtendedKalmanFilter.step"><code class="xref py py-obj docutils literal notranslate"><span class="pre">step</span></code></a>([u, z])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#localization.gaussian.ExtendedKalmanFilter.predict" title="localization.gaussian.ExtendedKalmanFilter.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code></a>(u)</p></td>
+<td><p>Runs the prediction or propagation phase of the EKF.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#localization.gaussian.ExtendedKalmanFilter.set_control_input_matrix" title="localization.gaussian.ExtendedKalmanFilter.set_control_input_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_control_input_matrix</span></code></a>(B)</p></td>
+<td><p>Used to set the control input matrix B.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#localization.gaussian.ExtendedKalmanFilter.set_measurement_noise_matrix" title="localization.gaussian.ExtendedKalmanFilter.set_measurement_noise_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_measurement_noise_matrix</span></code></a>(R)</p></td>
+<td><p>Sets the measurement noise matrix R</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#localization.gaussian.ExtendedKalmanFilter.set_process_noise_matrix" title="localization.gaussian.ExtendedKalmanFilter.set_process_noise_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_process_noise_matrix</span></code></a>(Q)</p></td>
+<td><p>Sets the process noise matrix Q.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#localization.gaussian.ExtendedKalmanFilter.set_state_transition_matrix" title="localization.gaussian.ExtendedKalmanFilter.set_state_transition_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_state_transition_matrix</span></code></a>(F)</p></td>
+<td><p>Used to set the state transition matrix F.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#localization.gaussian.ExtendedKalmanFilter.step" title="localization.gaussian.ExtendedKalmanFilter.step"><code class="xref py py-obj docutils literal notranslate"><span class="pre">step</span></code></a>([u, z])</p></td>
 <td><p>Executes one cycle of the Kalman Filter</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#localization.gaussian.ExtendedKalmanFilter.update" title="localization.gaussian.ExtendedKalmanFilter.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(z)</p></td>
-<td><p>The measurement update function.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#localization.gaussian.ExtendedKalmanFilter.update" title="localization.gaussian.ExtendedKalmanFilter.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(z)</p></td>
+<td><p>Runs the update phase of the EKF</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py method">
-<dt class="sig sig-object py" id="localization.gaussian.ExtendedKalmanFilter.predict">
-<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.gaussian.ExtendedKalmanFilter.predict" title="Permalink to this definition">¶</a></dt>
-<dd><p>Predict (propagate) the Kalman Filter’s state estimate. This method
-should not be called directly. Call <cite>step</cite> instead.</p>
+<dt class="sig sig-object py" id="localization.gaussian.ExtendedKalmanFilter.calculate_F">
+<span class="sig-name descname"><span class="pre">calculate_F</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.gaussian.ExtendedKalmanFilter.calculate_F" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the state transition Jacobian</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="localization.gaussian.ExtendedKalmanFilter.calculate_H">
+<span class="sig-name descname"><span class="pre">calculate_H</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.gaussian.ExtendedKalmanFilter.calculate_H" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the observation Jacobian</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="localization.gaussian.ExtendedKalmanFilter.f">
+<span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.gaussian.ExtendedKalmanFilter.f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Propagation or state transition function</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="localization.gaussian.ExtendedKalmanFilter.h">
+<span class="sig-name descname"><span class="pre">h</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.gaussian.ExtendedKalmanFilter.h" title="Permalink to this definition">¶</a></dt>
+<dd><p>Measurement transformation function that maps the current state estimate to the measurement space</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="localization.gaussian.ExtendedKalmanFilter.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">covariance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.gaussian.ExtendedKalmanFilter.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes the Kalman Filter about a mean and covariance</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>u</strong> (<em>array</em><em> or </em><em>array-like</em>) – the control input vector</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mu</strong> (<em>vector</em><em> or </em><em>vector-like</em>) – the distribution center</p></li>
+<li><p><strong>covariance</strong> (<em>matrix</em><em> or </em><em>matrix-like</em>) – the covariance of the distribution</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="localization.gaussian.ExtendedKalmanFilter.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.gaussian.ExtendedKalmanFilter.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs the prediction or propagation phase of the EKF.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>u</strong> (<em>vector</em><em> or </em><em>vector-like</em>) – control input vector</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="localization.gaussian.ExtendedKalmanFilter.set_control_input_matrix">
+<span class="sig-name descname"><span class="pre">set_control_input_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">B</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.gaussian.ExtendedKalmanFilter.set_control_input_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to set the control input matrix B.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>B</strong> (<em>array</em><em> or </em><em>array-like</em>) – the control input matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="localization.gaussian.ExtendedKalmanFilter.set_measurement_noise_matrix">
+<span class="sig-name descname"><span class="pre">set_measurement_noise_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.gaussian.ExtendedKalmanFilter.set_measurement_noise_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the measurement noise matrix R</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>R</strong> (<em>array</em><em> or </em><em>array-like</em>) – the measurement noise matrix R</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="localization.gaussian.ExtendedKalmanFilter.set_process_noise_matrix">
+<span class="sig-name descname"><span class="pre">set_process_noise_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Q</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.gaussian.ExtendedKalmanFilter.set_process_noise_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the process noise matrix Q.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>Q</strong> (<em>array</em><em> or </em><em>array-like</em>) – the process noise matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="localization.gaussian.ExtendedKalmanFilter.set_state_transition_matrix">
+<span class="sig-name descname"><span class="pre">set_state_transition_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">F</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.gaussian.ExtendedKalmanFilter.set_state_transition_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to set the state transition matrix F.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>F</strong> (<em>array</em><em> or </em><em>array-like</em>) – the state transition matrix</p>
 </dd>
 </dl>
 </dd></dl>
@@ -123,11 +220,10 @@ should not be called directly. Call <cite>step</cite> instead.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="localization.gaussian.ExtendedKalmanFilter.update">
 <span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#localization.gaussian.ExtendedKalmanFilter.update" title="Permalink to this definition">¶</a></dt>
-<dd><p>The measurement update function. This method should not be called 
-directly. Call <cite>step</cite> instead.</p>
+<dd><p>Runs the update phase of the EKF</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>z</strong> (<em>array</em><em> or </em><em>array-like</em>) – the measurement or observation vector</p>
+<dd class="field-odd"><p><strong>z</strong> (<em>vector</em><em> or </em><em>vector like</em>) – measurement value</p>
 </dd>
 </dl>
 </dd></dl>
@@ -158,7 +254,9 @@ directly. Call <cite>step</cite> instead.</p>
 <li class="toctree-l2"><a class="reference internal" href="localization.examples.html">localization.examples</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="localization.gaussian.html">localization.gaussian</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">localization.gaussian.ExtendedKalmanFilter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="localization.gaussian.InformationFilter.html">localization.gaussian.InformationFilter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="localization.gaussian.KalmanFilter.html">localization.gaussian.KalmanFilter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="localization.gaussian.UnscentedKalmanFilter.html">localization.gaussian.UnscentedKalmanFilter</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="localization.nonparameteric.html">localization.nonparameteric</a></li>
@@ -175,7 +273,7 @@ directly. Call <cite>step</cite> instead.</p>
   <li><a href="localization.html">localization</a><ul>
   <li><a href="localization.gaussian.html">localization.gaussian</a><ul>
       <li>Previous: <a href="localization.gaussian.html" title="previous chapter">localization.gaussian</a></li>
-      <li>Next: <a href="localization.gaussian.KalmanFilter.html" title="next chapter">localization.gaussian.KalmanFilter</a></li>
+      <li>Next: <a href="localization.gaussian.InformationFilter.html" title="next chapter">localization.gaussian.InformationFilter</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -207,7 +305,7 @@ directly. Call <cite>step</cite> instead.</p>
       &copy;2022, James Brodovsky.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.2.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

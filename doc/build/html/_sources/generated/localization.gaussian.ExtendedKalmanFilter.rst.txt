@@ -21,7 +21,12 @@ localization.gaussian.ExtendedKalmanFilter
       ~ExtendedKalmanFilter.calculate_H
       ~ExtendedKalmanFilter.f
       ~ExtendedKalmanFilter.h
+      ~ExtendedKalmanFilter.initialize
       ~ExtendedKalmanFilter.predict
+      ~ExtendedKalmanFilter.set_control_input_matrix
+      ~ExtendedKalmanFilter.set_measurement_noise_matrix
+      ~ExtendedKalmanFilter.set_process_noise_matrix
+      ~ExtendedKalmanFilter.set_state_transition_matrix
       ~ExtendedKalmanFilter.step
       ~ExtendedKalmanFilter.update
    
